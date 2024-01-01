@@ -321,6 +321,8 @@
     <h1>[ {{title | uppercase}} ]</h1>
     <hr />
     <div class="row" style="background-color: #bae8e2; box-shadow: 2px 2px 2px 2px #c2c3c4; border-radius: 10px;">
+      <h1>[ TWO WAY DATA BINDING ]</h1>
+      <hr />
       <div style="margin-top: 10px;" class="col col-md-6">
         <input type="text" [(ngModel)]="username" class="form-control" placeholder="Username" aria-label="Username"
           aria-describedby="basic-addon1">
@@ -328,16 +330,16 @@
 
       <!-- <button class="btn btn-primary" (click)="clickHandler()"> Click me</button> -->
 
-      <h1>[ TWO WAY DATA BINDING ]</h1>
-      <hr />
+     
       <label class="">User Name data update: </label>
       <h3> {{username}}</h3>
       <hr />
     </div>
-    <h1 class="">Component communication</h1>
 
     <hr />
     <div style="background-color: #bae8e2; box-shadow: 2px 2px 2px 2px #c2c3c4;" class="row gap-3 col-md-12 rounded-3 ">
+    <h1 class="">Component communication</h1>
+      <hr/>
       <div class="col-md-6">
         <div class="col">
           <input type="text" [(ngModel)]="childDataUpdate" class="m-2 ml-10 form-control" placeholder="Enter data"
@@ -353,6 +355,7 @@
     </div>
     <hr />
     <div class="row" style="background-color: #bae8e2; border-radius: 10px; box-shadow: 2px 2px 2px 2px #c2c3c4;">
+      <h1>I'm the child Component</h1><hr/>
       <child-component [titleForChild]="childDataUpdateBtn"
         (updateFromChildToParent)="parentUpdateHandler($event)"></child-component>
     </div>
@@ -361,6 +364,7 @@
     <div class="row" style="border-radius: 10px;
     background-color: aquamarine;
     box-shadow: 2px 2px 2px 2px #a19292;">
+    <h1>Template data driven form</h1>
       <hr />
       <app-template-driven-form></app-template-driven-form>
       

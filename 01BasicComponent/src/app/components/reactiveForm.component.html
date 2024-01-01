@@ -1,24 +1,124 @@
 <div class="row">
+    <h3>Using Form Control</h3>
+    <hr />
     <form>
         <div style="margin-bottom: 2rem " class="row">
             <div class="col">
-                <input type="text" class="form-control" placeholder="User name"
+                <input [formControl]="userName" type="text" class="form-control" placeholder="User name"
                     aria-label="User name">
-                <span class="text-danger">This filed is
+                <span *ngIf="userName.invalid && userName.touched" class="text-danger">This filed is
                     required</span>
             </div>
-
             <div class="col">
-                <input  type="password" class="form-control" placeholder="Password"
+                <input [formControl]="password" type="password" class="form-control" placeholder="Password"
                     aria-label="Passowrd">
-                <span class="text-danger">This filed is
+                <span *ngIf="password.invalid && password.touched" class="text-danger">This filed is
                     required</span>
 
             </div>
             <div class="col">
-                <button class="btn btn-success" type="submit">Login with Form
+                <button class="btn btn-success" type="button" (click)="loginFormSubmit()">Login with Form
+                    Control Submit</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+<div class="row">
+    <hr />
+    <h1>Using Form Group</h1>
+    <hr />
+    <form [formGroup]="loginFormGroup" (ngSubmit)="loginFormGroupSubmit()">
+        <div style="margin-bottom: 2rem " class="row">
+            <div class="col">
+                <input name="usename" formControlName="usename" type="text" class="form-control" placeholder="User name"
+                    aria-label="User name">
+                <span *ngIf="loginFormGroup.controls.usename.invalid && loginFormGroup.controls.usename.touched"
+                    class="text-danger">This filed is
+                    required</span>
+            </div>
+            <div class="col">
+                <input name="password" formControlName="password" type="password" class="form-control"
+                    placeholder="Password" aria-label="Passowrd">
+                <span *ngIf="loginFormGroup.controls.password.invalid && loginFormGroup.controls.password.touched"
+                    class="text-danger">This filed is
+                    required</span>
+            </div>
+            <div class="col">
+                <button class="btn btn-success" type="submit">Login with Form group
+                    Submit</button>
+            </div>
+            <br><br>
+            <hr />
+            <div class="row">
+                <h1>[ Two way binding with Form Group ]</h1>
+                <hr />
+                <div class="row">User Name: <h5>{{loginFormGroup.controls.usename.value}}</h5>
+                </div>
+                <hr />
+                <div class="row">Password: <h5> {{loginFormGroup.controls.password.value}}</h5>
+                </div>
+            </div>
+            <hr />
+        </div>
+    </form>
+
+</div>
+
+<div class="row">
+    <hr />
+    <h1>Dynamic data update in controls</h1>
+    <hr />
+    <form [formGroup]="dynamicForm">
+        <div style="margin-bottom: 10px;" class="row">
+            <div class="col">
+                <input name="username" formControlName="username" type="text" class="form-control"
+                    placeholder="User name" aria-label="User name">
+                <!-- <span *ngIf="loginFormGroup.controls.usename.invalid && loginFormGroup.controls.usename.touched"
+                class="text-danger">This filed is
+                required</span> -->
+            </div>
+            <div class="col">
+                <input name="password" formControlName="password" type="password" class="form-control"
+                    placeholder="Password" aria-label="Passowrd">
+                <!-- <span *ngIf="loginFormGroup.controls.password.invalid && loginFormGroup.controls.password.touched"
+                class="text-danger">This filed is
+                required</span> -->
+            </div>
+            <div class="col">
+                <button class="btn btn-success" type="button" (click)="setDynamicValue()">Login with Form group
                     Submit</button>
             </div>
         </div>
     </form>
+</div>
+
+<div class="row">
+    <hr>
+    <h1>Custom Validation</h1>
+    <hr>
+    <div class="col">
+        <form [formGroup]="customValidationForm">
+            <div style="margin-bottom: 10px;" class="row">
+                <div class="col">
+                    <input name="username" formControlName="username" type="text" class="form-control"
+                        placeholder="User name" aria-label="User name">
+                    <span class="text-danger">This filed is
+                        required</span>
+                </div>
+                <div class="col">
+                    <input name="password" formControlName="password" type="password" class="form-control"
+                        placeholder="Password" aria-label="Passowrd">
+                    <span *ngIf="loginFormGroup.get('password')?.errors?.['lenval']" class="text-danger">This filed is
+                        required</span>
+                </div>
+                <br>
+
+                <div class="col">
+                    <button class="btn btn-success" type="button">Login with Form group
+                        Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
