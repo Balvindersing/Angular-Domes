@@ -1,0 +1,64 @@
+<div style="" class="row">
+    <div class="row">
+        <h1>Template data driven form</h1>
+    </div>
+    <form #formTemplate>
+        <div style="margin-bottom: 2rem " class="row">
+            <div class="col">
+                <input name="username" type="text" class="form-control" placeholder="User name" aria-label="User name">
+            </div>
+            <div class="col">
+                <input name="password" type="password" class="form-control" placeholder="Password"
+                    aria-label="Passowrd">
+            </div>
+            <div class="col">
+                <button class="btn btn-success" (click)="formSubmitHandler(formTemplate)">Login</button>
+            </div>
+        </div>
+    </form>
+    <hr />
+    <h1>Submit Form with contoller model</h1>
+    <hr />
+    <form (ngSubmit)="loginFormSubmit()">
+        <div style="margin-bottom: 2rem " class="row">
+            <div class="col">
+                <input name="userName" [(ngModel)]="login_Model.userName" type="text" class="form-control"
+                    placeholder="User name" aria-label="User name">
+            </div>
+            <div class="col">
+                <input name="password" [(ngModel)]="login_Model.password" type="password" class="form-control"
+                    placeholder="Password" aria-label="Passowrd">
+            </div>
+            <div class="col">
+                <button class="btn btn-success" type="submit">Login with Form Submit</button>
+            </div>
+        </div>
+    </form>
+
+    <hr />
+    <h1>Form validation
+    </h1>
+    <hr />
+    <form (ngSubmit)="loginFormSubmit()" #loginForm="ngForm">
+        <div style="margin-bottom: 2rem " class="row">
+            <div class="col">
+                <input #username="ngModel" required name="userName" [(ngModel)]="login_Model.userName" type="text"
+                    class="form-control" placeholder="User name" aria-label="User name">
+                <span class="text-danger" *ngIf="username.invalid && (username.touched || username.dirty)">This filed is
+                    required</span>
+            </div>
+
+            <div class="col">
+                <input #password="ngModel" required name="password" [(ngModel)]="login_Model.password" type="password"
+                    class="form-control" placeholder="Password" aria-label="Passowrd">
+                <span class="text-danger" *ngIf="password.invalid && (password.touched || password.dirty)">This filed is
+                    required</span>
+
+            </div>
+            <div class="col">
+                <button [disabled]="loginForm.invalid" class="btn btn-success" type="submit">Login with Form
+                    Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
